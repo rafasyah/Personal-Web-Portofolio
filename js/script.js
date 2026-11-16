@@ -44,26 +44,27 @@
     /* ########################################### hero parallax ############################################## */
     window.onload = function () {
 
-        var parallaxBox = document.getElementById('parallax');
-        var
-            /* c1left = document.getElementById('l1').offsetLeft,
-                       c1top = document.getElementById('l1').offsetTop, */
-            c2left = document.getElementById('l2').offsetLeft,
-            c2top = document.getElementById('l2').offsetTop,
-            c3left = document.getElementById('l3').offsetLeft,
-            c3top = document.getElementById('l3').offsetTop,
-            c4left = document.getElementById('l4').offsetLeft,
-            c4top = document.getElementById('l4').offsetTop,
-            c5left = document.getElementById('l5').offsetLeft,
-            c5top = document.getElementById('l5').offsetTop,
-            c6left = document.getElementById('l6').offsetLeft,
-            c6top = document.getElementById('l6').offsetTop,
-            c7left = document.getElementById('l7').offsetLeft,
-            c7top = document.getElementById('l7').offsetTop,
-            c8left = document.getElementById('l8').offsetLeft,
-            c8top = document.getElementById('l8').offsetTop,
-            c9left = document.getElementById('l9').offsetLeft,
-            c9top = document.getElementById('l9').offsetTop;
+        var parallaxBox = document.getElementById('parallax') || document.getElementById('home');
+        if (!parallaxBox) return;
+        var l2 = document.getElementById('l2'),
+            l3 = document.getElementById('l3'),
+            l4 = document.getElementById('l4'),
+            l5 = document.getElementById('l5'),
+            l6 = document.getElementById('l6'),
+            l7 = document.getElementById('l7'),
+            l8 = document.getElementById('l8'),
+            l9 = document.getElementById('l9');
+
+        if (!l2 || !l3 || !l4 || !l5 || !l6 || !l7 || !l8 || !l9) return;
+
+        var c2left = l2.offsetLeft, c2top = l2.offsetTop,
+            c3left = l3.offsetLeft, c3top = l3.offsetTop,
+            c4left = l4.offsetLeft, c4top = l4.offsetTop,
+            c5left = l5.offsetLeft, c5top = l5.offsetTop,
+            c6left = l6.offsetLeft, c6top = l6.offsetTop,
+            c7left = l7.offsetLeft, c7top = l7.offsetTop,
+            c8left = l8.offsetLeft, c8top = l8.offsetTop,
+            c9left = l9.offsetLeft, c9top = l9.offsetTop;
 
         parallaxBox.onmousemove = function (event) {
             event = event || window.event;
@@ -85,6 +86,7 @@
 
     function mouseParallax(id, left, top, mouseX, mouseY, speed) {
         var obj = document.getElementById(id);
+        if (!obj || !obj.parentNode) return;
         var parentObj = obj.parentNode,
             containerWidth = parseInt(parentObj.offsetWidth),
             containerHeight = parseInt(parentObj.offsetHeight);
@@ -159,6 +161,26 @@
         }
     });
 
+    // Hotel Grand Nusantara Carousels
+    $('#hotelCarousel').carousel({
+        interval: 2500,
+        pause: 'hover'
+    });
 
+    $('#hotelModal').on('shown.bs.modal', function () {
+        $('#hotelModalCarousel').carousel(0);
+        $('#hotelModalCarousel').carousel('cycle');
+    });
+
+    // Catering Nusantara Carousels
+    $('#cateringCarousel').carousel({
+        interval: 2500,
+        pause: 'hover'
+    });
+
+    $('#cateringModal').on('shown.bs.modal', function () {
+        $('#cateringModalCarousel').carousel(0);
+        $('#cateringModalCarousel').carousel('cycle');
+    });
 
 })(jQuery);
